@@ -1,0 +1,211 @@
+/* =============================================
+   STYLE.CSS — Portfolio Adrian Gelineau
+   Mise en page : sidebar fixe à gauche + contenu à droite
+   ============================================= */
+
+
+/* --- BASE --- */
+
+body {
+  font-family: 'Public Sans', sans-serif;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #111;
+  background-color: #f5f4f2;   /* ← couleur de fond, change ici */
+  margin: 0;
+  padding: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+
+/* --- MISE EN PAGE PRINCIPALE : sidebar + contenu --- */
+/*
+  On divise la page en deux colonnes :
+  - sidebar  : largeur fixe à gauche (200px)
+  - contenu  : tout le reste à droite
+*/
+
+body {
+  display: flex;
+  min-height: 100vh;
+}
+
+
+/* --- SIDEBAR (colonne gauche) --- */
+
+.sidebar {
+  width: 200px;              /* ← largeur du menu, ajuste si besoin */
+  flex-shrink: 0;            /* empêche la sidebar de rétrécir */
+  padding: 2rem 1.5rem;
+  position: sticky;          /* reste visible quand on scrolle */
+  top: 0;
+  height: 100vh;             /* occupe toute la hauteur de l'écran */
+  overflow-y: auto;          /* scroll interne si contenu trop long */
+}
+
+.sidebar-nom {
+  margin-bottom: 2rem;
+}
+
+.nom {
+  display: block;
+  font-weight: 700;
+  font-size: 1em;
+  margin-bottom: 0.3rem;
+}
+
+.sous-nom {
+  display: block;
+  font-weight: 300;
+  font-style: italic;
+  color: #555;
+  font-size: 0.9em;
+}
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;    /* liens empilés verticalement */
+  gap: 0.4rem;
+}
+
+.sidebar-nav a {
+  text-decoration: none;
+  color: #111;
+  font-weight: 300;
+  transition: opacity 0.2s;
+}
+
+.sidebar-nav a:hover {
+  opacity: 0.5;
+}
+
+/* Séparateur visuel dans le nav (trait horizontal) */
+.nav-separateur {
+  display: block;
+  border-top: 1px solid #ccc;
+  margin: 0.6rem 0;
+}
+
+
+/* --- CONTENU (colonne droite) --- */
+
+.contenu {
+  flex: 1;                   /* prend tout l'espace restant */
+  padding: 2rem 2rem 4rem 2rem;
+  overflow-y: auto;
+}
+
+
+/* --- SÉRIE --- */
+
+.serie {
+  margin-bottom: 4rem;       /* ← espace entre chaque série */
+  padding-top: 1rem;
+}
+
+.serie-info {
+  margin-bottom: 1rem;
+}
+
+.serie-titre {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  margin: 0 0 0.3rem 0;
+  padding: 0;
+}
+
+.serie-credits {
+  font-weight: 300;
+  font-style: italic;
+  color: #666;
+  margin: 0;
+  font-size: 12px;
+}
+
+
+/* --- GALERIE PHOTO --- */
+
+.galerie {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);   /* ← nb de colonnes. Change 4 en 3 ou 2 */
+  gap: 0.3rem;                             /* ← espace entre les photos */
+}
+
+.galerie a {
+  display: block;
+  overflow: hidden;
+}
+
+.galerie img {
+  width: 100%;
+  aspect-ratio: 3 / 2;      /* ← ratio. Retire ces deux lignes pour garder le ratio original */
+  object-fit: cover;
+  display: block;
+  transition: opacity 0.25s;
+}
+
+.galerie a:hover img {
+  opacity: 0.75;
+}
+
+
+/* --- CONTACT --- */
+
+.contact-email {
+  font-weight: 300;
+  margin: 0;
+}
+
+.contact-email a {
+  color: #111;
+  text-underline-offset: 3px;
+}
+
+
+/* --- LIENS GÉNÉRAUX --- */
+
+a {
+  color: #111;
+}
+
+
+/* --- RESPONSIVE : téléphone ---
+   Sur petit écran, la sidebar passe au-dessus du contenu
+   ---------------------------------------------------------------- */
+
+@media (max-width: 650px) {
+
+  body {
+    flex-direction: column;  /* empile sidebar au-dessus du contenu */
+  }
+
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: static;
+    padding: 1.5rem 1rem 1rem;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .sidebar-nav {
+    flex-direction: row;     /* liens en ligne sur mobile */
+    flex-wrap: wrap;
+    gap: 0.5rem 1rem;
+  }
+
+  .nav-separateur {
+    display: none;
+  }
+
+  .galerie {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .contenu {
+    padding: 1.5rem 1rem;
+  }
+}

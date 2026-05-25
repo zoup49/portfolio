@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Adrian Gelineau — Photographie argentique</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+  <!-- GLightbox -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- =============================================
+       COLONNE GAUCHE : menu fixe
+       Les liens href="#id" font défiler vers la section correspondante
+       ============================================= -->
+  <aside class="sidebar">
+
+    <div class="sidebar-nom">
+      <span class="nom">Adrian Gelineau</span>
+      <span class="sous-nom">photographie argentique</span>
+    </div>
+
+    <nav class="sidebar-nav">
+      <!-- Ajouter une série : ajoute un <a href="#nom-serie">nom série</a> -->
+      <a href="#paysage">paysage</a>
+
+      <!-- Décommenter quand tu ajouteras ces séries -->
+      <!--
+      <a href="#concerts">concerts</a>
+      <a href="#maternite">maternité</a>
+      <a href="#double-exposition">doubles expositions</a>
+      -->
+
+      <!-- Séparateur optionnel avant contact -->
+      <span class="nav-separateur"></span>
+
+      <a href="#contact">contact</a>
+    </nav>
+
+  </aside>
+
+
+  <!-- =============================================
+       COLONNE DROITE : contenu principal
+       ============================================= -->
+  <main class="contenu">
+
+
+    <!-- ==========================================
+         SÉRIE : PAYSAGE
+         id="paysage" correspond au href="#paysage" dans le menu
+         ========================================== -->
+    <section id="paysage" class="serie">
+
+      <div class="serie-info">
+        <h2 class="serie-titre">PAYSAGE</h2>
+        <!-- Ajoute ici les crédits, lieu, date, etc. -->
+        <p class="serie-credits">photographie argentique — Québec, 2024</p>
+      </div>
+
+      <div class="galerie">
+
+        <!-- PHOTO 1 -->
+        <!-- href = URL haute résolution (lightbox) -->
+        <!-- src  = URL miniature (grille, plus légère) -->
+        <a href="https://res.cloudinary.com/djrtz9zbk/image/upload/w_1600,q_auto/v1779740509/00002161-29_tyj2nv.jpg"
+           class="glightbox">
+          <img
+            src="https://res.cloudinary.com/djrtz9zbk/image/upload/w_800,q_auto/v1779740509/00002161-29_tyj2nv.jpg"
+            alt="Paysage 01"
+            loading="lazy"
+          />
+        </a>
+
+        <!-- PHOTO 2 -->
+        <a href="https://res.cloudinary.com/djrtz9zbk/image/upload/w_1600,q_auto/v1779740503/1_21_kcuvib.jpg"
+           class="glightbox">
+          <img
+            src="https://res.cloudinary.com/djrtz9zbk/image/upload/w_800,q_auto/v1779740503/1_21_kcuvib.jpg"
+            alt="Paysage 02"
+            loading="lazy"
+          />
+        </a>
+
+        <!-- PHOTO 3 -->
+        <a href="https://res.cloudinary.com/djrtz9zbk/image/upload/w_1600,q_auto/v1779740346/1_4_oucnro.jpg"
+           class="glightbox">
+          <img
+            src="https://res.cloudinary.com/djrtz9zbk/image/upload/w_800,q_auto/v1779740346/1_4_oucnro.jpg"
+            alt="Paysage 03"
+            loading="lazy"
+          />
+        </a>
+
+        <!-- AJOUTER UNE PHOTO : copie-colle ce bloc, change les deux URLs et le alt -->
+        <!--
+        <a href="https://res.cloudinary.com/djrtz9zbk/image/upload/w_1600,q_auto/IDENTIFIANT"
+           class="glightbox">
+          <img
+            src="https://res.cloudinary.com/djrtz9zbk/image/upload/w_800,q_auto/IDENTIFIANT"
+            alt="Description"
+            loading="lazy"
+          />
+        </a>
+        -->
+
+      </div>
+    </section>
+
+
+    <!-- ==========================================
+         AJOUTER UNE SÉRIE : copie-colle ce bloc entier,
+         change l'id, le titre, les crédits, et les photos
+         ========================================== -->
+    <!--
+    <section id="concerts" class="serie">
+      <div class="serie-info">
+        <h2 class="serie-titre">CONCERTS</h2>
+        <p class="serie-credits">Rimouski, 2023–2024</p>
+      </div>
+      <div class="galerie">
+        ...photos...
+      </div>
+    </section>
+    -->
+
+
+    <!-- ==========================================
+         CONTACT
+         ========================================== -->
+    <section id="contact" class="serie">
+      <div class="serie-info">
+        <h2 class="serie-titre">CONTACT</h2>
+      </div>
+      <p class="contact-email">
+        <a href="mailto:adriangelineau@gmail.com">adriangelineau@gmail.com</a>
+      </p>
+    </section>
+
+
+  </main>
+
+
+  <!-- GLightbox : doit rester juste avant </body> -->
+  <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
+  <script>const lightbox = GLightbox();</script>
+
+</body>
+</html>
