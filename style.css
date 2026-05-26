@@ -9,7 +9,7 @@
 body {
   font-family: 'Public Sans', sans-serif;
   font-size: 13px;
-  line-height: 1.5;
+  line-height: 1;
   color: #111;
   background-color: #f5f4f2;   /* ← couleur de fond, change ici */
   margin: 0;
@@ -37,9 +37,9 @@ body {
 /* --- SIDEBAR (colonne gauche) --- */
 
 .sidebar {
-  width: 200px;              /* ← largeur du menu, ajuste si besoin */
+  width: 250px;              /* ← largeur du menu, ajuste si besoin */
   flex-shrink: 0;            /* empêche la sidebar de rétrécir */
-  padding: 2rem 1.5rem;
+  padding: 2rem 2.5rem;
   position: sticky;          /* reste visible quand on scrolle */
   top: 0;
   height: 100vh;             /* occupe toute la hauteur de l'écran */
@@ -53,9 +53,9 @@ body {
 .nom {
   display: block;
   font-weight: 700;
-  font-size: 1em;
-  margin-bottom: 0.3rem;
-}
+  font-size: 1.8em;
+  margin-bottom: 0.5rem;
+}s
 
 .sous-nom {
   display: block;
