@@ -1,19 +1,21 @@
 /* =============================================
    STYLE.CSS — Portfolio Adrian Gelineau
-   Mise en page : sidebar fixe à gauche + contenu à droite
+   Mise en page : sidebar fixe + bandes horizontales
    ============================================= */
 
 
 /* --- BASE --- */
 
 body {
-  font-family: 'Public Sans', sans-serif;
+  font-family: 'Fragment Mono', monospace;
   font-size: 13px;
-  line-height: 1;
+  line-height: 0.9;
   color: #111;
-  background-color: #f5f4f2;   /* ← couleur de fond, change ici */
+  background-color: #f5f4f2;   /* ← couleur de fond */
   margin: 0;
   padding: 0;
+  display: flex;
+  min-height: 100vh;
 }
 
 * {
@@ -21,29 +23,16 @@ body {
 }
 
 
-/* --- MISE EN PAGE PRINCIPALE : sidebar + contenu --- */
-/*
-  On divise la page en deux colonnes :
-  - sidebar  : largeur fixe à gauche (200px)
-  - contenu  : tout le reste à droite
-*/
-
-body {
-  display: flex;
-  min-height: 100vh;
-}
-
-
-/* --- SIDEBAR (colonne gauche) --- */
+/* --- SIDEBAR --- */
 
 .sidebar {
-  width: 250px;              /* ← largeur du menu, ajuste si besoin */
-  flex-shrink: 0;            /* empêche la sidebar de rétrécir */
-  padding: 2rem 2.5rem;
-  position: sticky;          /* reste visible quand on scrolle */
+  width: 350px;
+  flex-shrink: 0;
+  padding: 3rem 2.5rem;
+  position: sticky;
   top: 0;
-  height: 100vh;             /* occupe toute la hauteur de l'écran */
-  overflow-y: auto;          /* scroll interne si contenu trop long */
+  height: 100vh;
+  overflow-y: auto;
 }
 
 .sidebar-nom {
@@ -53,21 +42,22 @@ body {
 .nom {
   display: block;
   font-weight: 700;
-  font-size: 1.8em;
-  margin-bottom: 0.5rem;
-}s
+  font-size: 2em;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.4rem;
+}
 
 .sous-nom {
   display: block;
   font-weight: 300;
   font-style: italic;
-  color: #555;
+  color: #666;
   font-size: 0.9em;
 }
 
 .sidebar-nav {
   display: flex;
-  flex-direction: column;    /* liens empilés verticalement */
+  flex-direction: column;
   gap: 0.4rem;
 }
 
@@ -79,10 +69,9 @@ body {
 }
 
 .sidebar-nav a:hover {
-  opacity: 0.5;
+  opacity: 0.4;
 }
 
-/* Séparateur visuel dans le nav (trait horizontal) */
 .nav-separateur {
   display: block;
   border-top: 1px solid #ccc;
@@ -90,66 +79,97 @@ body {
 }
 
 
-/* --- CONTENU (colonne droite) --- */
+/* --- CONTENU --- */
 
 .contenu {
-  flex: 1;                   /* prend tout l'espace restant */
-  padding: 2rem 2rem 4rem 2rem;
-  overflow-y: auto;
+  flex: 1;
+  padding: 2rem 0 6rem 2rem;  /* pas de padding-right : les bandes vont jusqu'au bord */
+  min-width: 0;               /* empêche le dépassement flex */
 }
 
 
 /* --- SÉRIE --- */
 
 .serie {
-  margin-bottom: 4rem;       /* ← espace entre chaque série */
-  padding-top: 1rem;
+  margin-bottom: 4rem;        /* ← espace entre chaque série */
 }
 
 .serie-info {
-  margin-bottom: 1rem;
+  margin-bottom: 0.8rem;
+  padding-right: 2rem;        /* marge droite pour le texte seulement */
 }
 
 .serie-titre {
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  margin: 0 0 0.3rem 0;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  margin: 0 0 0.2rem 0;
   padding: 0;
 }
 
 .serie-credits {
   font-weight: 300;
   font-style: italic;
-  color: #666;
+  color: #888;
   margin: 0;
-  font-size: 12px;
+  font-size: 11px;
 }
 
 
-/* --- GALERIE PHOTO --- */
+/* --- BANDE HORIZONTALE ---
+   Principe :
+   - display: flex          → images côte à côte
+   - overflow-x: auto       → scroll horizontal quand ça déborde
+   - height fixe            → toutes les images ont la même hauteur
+   - width: auto sur img    → chaque image garde son ratio naturel
+     (portrait = étroit, paysage = large)
+   -------------------------------------------- */
 
-.galerie {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);   /* ← nb de colonnes. Change 4 en 3 ou 2 */
-  gap: 0.3rem;                             /* ← espace entre les photos */
+.galerie-bande {
+  display: flex;
+  flex-direction: row;
+  gap: 3px;                   /* ← espace entre les photos */
+  overflow-x: auto;           /* scroll horizontal */
+  overflow-y: hidden;
+  height: 300px;              /* ← hauteur de la bande, ajuste à ton goût */
+  padding-bottom: 6px;        /* espace pour la scrollbar */
+  cursor: grab;               /* curseur "main" pour indiquer le drag possible */
 }
 
-.galerie a {
+.galerie-bande:active {
+  cursor: grabbing;
+}
+
+/* Scrollbar discrète */
+.galerie-bande::-webkit-scrollbar {
+  height: 3px;
+}
+.galerie-bande::-webkit-scrollbar-track {
+  background: transparent;
+}
+.galerie-bande::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 2px;
+}
+
+/* Chaque lien = une cellule de la bande */
+.galerie-bande a {
   display: block;
-  overflow: hidden;
+  flex-shrink: 0;             /* les images ne rétrécissent pas */
+  height: 100%;               /* remplit la hauteur de la bande */
+  text-decoration: none;
 }
 
-.galerie img {
-  width: 100%;
-  aspect-ratio: 3 / 2;      /* ← ratio. Retire ces deux lignes pour garder le ratio original */
-  object-fit: cover;
+/* L'image remplit la hauteur, largeur automatique selon son ratio */
+.galerie-bande img {
+  height: 100%;
+  width: auto;                /* ← clé : ratio naturel préservé */
   display: block;
   transition: opacity 0.25s;
 }
 
-.galerie a:hover img {
-  opacity: 0.75;
+.galerie-bande a:hover img {
+  opacity: 0.8;
 }
 
 
@@ -165,22 +185,17 @@ body {
   text-underline-offset: 3px;
 }
 
-
-/* --- LIENS GÉNÉRAUX --- */
-
 a {
   color: #111;
 }
 
 
-/* --- RESPONSIVE : téléphone ---
-   Sur petit écran, la sidebar passe au-dessus du contenu
-   ---------------------------------------------------------------- */
+/* --- RESPONSIVE : téléphone --- */
 
 @media (max-width: 650px) {
 
   body {
-    flex-direction: column;  /* empile sidebar au-dessus du contenu */
+    flex-direction: column;
   }
 
   .sidebar {
@@ -192,7 +207,7 @@ a {
   }
 
   .sidebar-nav {
-    flex-direction: row;     /* liens en ligne sur mobile */
+    flex-direction: row;
     flex-wrap: wrap;
     gap: 0.5rem 1rem;
   }
@@ -201,11 +216,89 @@ a {
     display: none;
   }
 
-  .galerie {
-    grid-template-columns: repeat(2, 1fr);
+  .contenu {
+    padding: 1.5rem 0 3rem 1rem;
   }
 
-  .contenu {
-    padding: 1.5rem 1rem;
+  .galerie-bande {
+    height: 240px;            /* bande plus courte sur mobile */
   }
 }
+
+
+/* --- ICÔNE INSTAGRAM --- */
+
+.instagram-btn {
+  position: fixed;             /* ← reste en bas à gauche peu importe le scroll */
+  bottom: 1.5rem;
+  left: 1.8rem;
+  color: #111;
+  text-decoration: none;
+  opacity: 0.5;
+  transition: opacity 0.2s;
+  z-index: 100;
+}
+
+.instagram-btn:hover {
+  opacity: 1;
+}
+
+
+/* ==============================================
+   POLICES — comment changer
+   ================================================
+
+   ÉTAPE 1 : remplace le lien Google Fonts dans le <head> du HTML
+   ÉTAPE 2 : change font-family dans body { } ci-dessous
+
+   -----------------------------------------------
+   OPTION A — Fragment Mono (monospace, techno)
+   <head> :
+     <link href="https://fonts.googleapis.com/css2?family=Fragment+Mono&display=swap" rel="stylesheet">
+   CSS :
+     font-family: 'Fragment Mono', monospace;
+
+   -----------------------------------------------
+   OPTION B — Playfair Display (élégant, mystique)
+   <head> :
+     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+   CSS :
+     font-family: 'Playfair Display', serif;
+
+   -----------------------------------------------
+   OPTION D — DM Mono (monospace propre, photo/éditorial)
+   <head> :
+     <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+   CSS :
+     font-family: 'DM Mono', monospace;
+
+   -----------------------------------------------
+   TESTÉ MAIS PAS AIMÉ
+   
+   OPTION E — Cormorant Garamond (serif fin, galerie d'art)
+   <head> :
+     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+   CSS :
+     font-family: 'Cormorant Garamond', serif;
+
+   -----------------------------------------------
+   OPTION F — Sono (variable, moderne mais organique — bon pour argentique)
+   <head> :
+     <link href="https://fonts.googleapis.com/css2?family=Sono:wght@300;400&display=swap" rel="stylesheet">
+   CSS :
+     font-family: 'Sono', sans-serif;
+
+   ================================================
+   Pour tester : change les deux lignes indiquées
+   dans le <head> HTML et dans body { } CSS.
+   Ctrl+S dans VS Code → rafraîchissement Live Server instantané.
+
+      OPTION C — Space Mono (underground, minimal)
+   <head> :
+     <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital@0;1&display=swap" rel="stylesheet">
+   CSS :
+     font-family: 'Space Mono', monospace;
+
+   ============================================== */
+
+   
