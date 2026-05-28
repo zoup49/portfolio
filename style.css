@@ -86,25 +86,25 @@ body {
 }
 
 /* =============================================
-   PAGE D'ACCUEIL — patchwork style
+   PAGE D'ACCUEIL — patchwork style Lawrence Fafard
    ============================================= */
-.patchwork { grid-template-columns: 1fr; padding-right: 8rem; }
+.patchwork {
+  display: grid;
+  grid-template-columns: 1fr 1fr;  /* 2 colonnes */
+  column-gap: 2rem;
+  row-gap: 0;
+  padding-right: 4rem;
+  align-items: start;
+}
 .pw-item {
   display: block;
   text-decoration: none;
-  max-width: 40%;               /* ← taille des photos (% de la colonne) */
-  margin-bottom: 1rem;          /* ← espace vertical entre photos */
+  max-width: 75%;               /* ← taille des photos dans leur colonne */
+  margin-bottom: 6rem;          /* ← espace vertical entre photos */
 }
-/* Colonne gauche — alignée à gauche */
 .pw-item:nth-child(odd)  { margin-right: auto; margin-top: 0; }
-/* Colonne droite — décalée vers le bas */
-.pw-item:nth-child(even) { margin-left: auto;  margin-top: 0rem; }
-.pw-item img {
-  width: 100%;
-  height: auto;
-  display: block;
-  transition: opacity 0.3s;
-}
+.pw-item:nth-child(even) { margin-left: auto;  margin-top: 8rem; } /* ← décalage colonne droite */
+.pw-item img { width: 100%; height: auto; display: block; transition: opacity 0.3s; }
 .pw-item:hover img { opacity: 0.75; }
 
 /* =============================================
@@ -220,23 +220,93 @@ body {
 a { color: #111; }
 
 /* =============================================
-   RESPONSIVE
+   HAMBURGER + RESPONSIVE MOBILE
    ============================================= */
+
+/* Desktop : barre mobile cachée */
+.sidebar-mobile-header { display: none; }
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 22px;
+  height: 15px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+.hamburger span {
+  display: block;
+  width: 100%;
+  height: 1.5px;
+  background: #111;
+  transition: opacity 0.2s;
+}
+.hamburger:hover span { opacity: 0.4; }
+
 @media (max-width: 700px) {
+
   body { flex-direction: column; }
+
+  /* Sidebar = barre fixe en haut */
   .sidebar {
     width: 100%;
     height: auto;
-    position: static;
-    padding: 1.5rem 1rem 1rem;
+    position: fixed;
+    top: 0; left: 0;
+    z-index: 100;
+    padding: 0;
+    background: #f5f4f2;
     border-bottom: 1px solid #ddd;
+    overflow: visible;
+    flex-direction: column;
   }
-  .sidebar-nav { flex-direction: row; flex-wrap: wrap; gap: 0.4rem 1rem; }
-  .nav-separateur { display: none; }
-  .instagram-sidebar { margin-top: 0.5rem; padding-top: 0; }
-  .contenu { padding: 1.5rem 0 3rem 1rem; }
+
+  /* Barre mobile : nom à gauche, hamburger à droite */
+  .sidebar-mobile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    width: 100%;
+  }
+  .sidebar-mobile-nom { text-decoration: none; color: #111; }
+  .sidebar-mobile-nom .nom    { font-size: 0.95em; font-weight: 900; display: block; }
+  .sidebar-mobile-nom .sous-nom { font-size: 0.75em; color: #888; display: block; }
+
+  /* Hamburger visible */
+  .hamburger { display: flex; }
+
+  /* Contenu sidebar caché par défaut */
+  .sidebar-inner { display: none; }
+
+  /* Overlay plein écran quand ouvert */
+  .sidebar.menu-open .sidebar-inner {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem 1.5rem 2rem;
+    background: #f5f4f2;
+    width: 100%;
+    min-height: calc(100vh - 56px);
+  }
+  .sidebar.menu-open .sidebar-nom { margin-bottom: 1.5rem; }
+  .sidebar.menu-open .sidebar-nav { gap: 1rem; font-size: 1.05em; }
+  .sidebar.menu-open .instagram-sidebar { margin-top: auto; padding-bottom: 1rem; }
+
+  /* Contenu décalé sous la barre fixe */
+  .contenu { padding-top: 5rem; padding-left: 1rem; }
+
   .galerie-bande { height: 200px; }
-  .patchwork { grid-template-columns: 1fr; padding-right: 1rem; }
+  .patchwork {
+    grid-template-columns: 1fr;
+    padding-right: 1rem;
+  }
+  .pw-item, .pw-item:nth-child(even) {
+    max-width: 90%;
+    margin-top: 0;
+    margin-left: 0;
+  }
   .apropos-wrap { flex-direction: column; }
   .apropos-photo { width: 100%; max-width: 280px; }
 }
