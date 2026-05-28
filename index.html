@@ -4,172 +4,77 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Adrian Gelineau — Photographie argentique</title>
-
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fragment+Mono&display=swap" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css2?family=Esteban&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <!-- COLONNE GAUCHE : menu fixe -->
   <aside class="sidebar">
-
     <div class="sidebar-nom">
-      <span class="nom">ADRIAN GELINEAU</span>
-      <span class="sous-nom">photographie argentique</span>
+      <a href="index.html">
+        <span class="nom">ADRIAN GELINEAU</span>
+        <span class="sous-nom">photographie argentique</span>
+      </a>
     </div>
-
     <nav class="sidebar-nav">
-      <a href="#paysage">paysage</a>
-      <a href="#concerts">musique & concerts</a>
-      <!-- Ajouter une série : <a href="#id-section">nom</a> -->
-      <!--
-      <a href="#arbre">arbres</a>
-      <a href="#double-expo">doubles expositions</a>
-      <a href="#eau">eau</a>
-      -->
+      <a href="paysage.html">paysage</a>
+      <a href="musique.html">musique & art</a>
+      <a href="double-exposition.html">doubles expositions</a>
+      <a href="portrait.html">portrait</a>
       <span class="nav-separateur"></span>
-      <a href="#contact">contact</a>
+      <a href="apropos.html">à propos</a>
     </nav>
-
+    <a href="https://www.instagram.com/adrian_alog/" target="_blank" rel="noopener noreferrer" class="instagram-sidebar" aria-label="Instagram">
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+        <circle cx="12" cy="12" r="4"/>
+        <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/>
+      </svg>
+    </a>
   </aside>
 
-
-  <!-- COLONNE DROITE : contenu -->
   <main class="contenu">
 
+    <!-- PATCHWORK D'ACCUEIL
+         Style Lawrence Fafard : 2 colonnes, photos à taille naturelle, air entre elles.
+         Chaque lien mène à la page de la série.
+         Pour changer une photo : remplace juste l'URL src et le href de destination. -->
 
-    <!-- ==========================================
-         SÉRIE : PAYSAGE
-         Pour ajouter une photo : copie-colle un bloc <a>/<img>
-         URL miniature  : w_800,q_auto  (dans src)
-         URL plein res  : w_1600,q_auto (dans href)
-         ========================================== -->
-    <section id="paysage" class="serie">
+    <div class="patchwork">
 
-      <div class="serie-info">
-        <h2 class="serie-titre">PAYSAGE</h2>
-        <p class="serie-credits">photographie argentique — Québec, 2021 à 2026</p>
-      </div>
+      <a href="paysage.html" class="pw-item">
+        <img src="https://res.cloudinary.com/djrtz9zbk/image/upload/w_900,q_auto/v1779740509/00002161-29_tyj2nv.jpg" alt="Paysage" loading="lazy" />
+      </a>
 
-      <div class="galerie-bande">
+      <a href="musique.html" class="pw-item">
+        <img src="https://res.cloudinary.com/djrtz9zbk/image/upload/w_900,q_auto/v1779740503/concert_4_qgwijq.jpg" alt="Musique" loading="lazy" />
+      </a>
 
-        <a href="https://res.cloudinary.com/djrtz9zbk/image/upload/w_1600,q_auto/v1779740509/00002161-29_tyj2nv.jpg" class="glightbox">
-          <img src="https://res.cloudinary.com/djrtz9zbk/image/upload/w_800,q_auto/v1779740509/00002161-29_tyj2nv.jpg" alt="Paysage 01" loading="lazy" />
-        </a>
+      <a href="double-exposition.html" class="pw-item">
+        <img src="https://res.cloudinary.com/djrtz9zbk/image/upload/w_900,q_auto/v1779740503/1_21_kcuvib.jpg" alt="Doubles expositions" loading="lazy" />
+      </a>
 
-        <a href="https://res.cloudinary.com/djrtz9zbk/image/upload/w_1600,q_auto/v1779740503/1_21_kcuvib.jpg" class="glightbox">
-          <img src="https://res.cloudinary.com/djrtz9zbk/image/upload/w_800,q_auto/v1779740503/1_21_kcuvib.jpg" alt="Paysage 02" loading="lazy" />
-        </a>
+      <a href="portrait.html" class="pw-item">
+        <img src="https://res.cloudinary.com/djrtz9zbk/image/upload/w_900,q_auto/v1779740346/concert_3_md6yuu.jpg" alt="Portrait" loading="lazy" />
+      </a>
 
-        <a href="https://res.cloudinary.com/djrtz9zbk/image/upload/w_1600,q_auto/v1779740346/1_4_oucnro.jpg" class="glightbox">
-          <img src="https://res.cloudinary.com/djrtz9zbk/image/upload/w_800,q_auto/v1779740346/1_4_oucnro.jpg" alt="Paysage 03" loading="lazy" />
-        </a>
+      <a href="paysage.html" class="pw-item">
+        <img src="https://res.cloudinary.com/djrtz9zbk/image/upload/w_900,q_auto/v1779740346/1_4_oucnro.jpg" alt="Paysage" loading="lazy" />
+      </a>
 
-        <!-- AJOUTER UNE PHOTO — copie ce bloc, change les deux URLs et le alt
-        <a href="https://res.cloudinary.com/djrtz9zbk/image/upload/w_1600,q_auto/paysage/NOM_FICHIER.jpg" class="glightbox">
-          <img src="https://res.cloudinary.com/djrtz9zbk/image/upload/w_800,q_auto/paysage/NOM_FICHIER.jpg" alt="Description" loading="lazy" />
-        </a>
-        -->
+      <a href="musique.html" class="pw-item">
+        <img src="https://res.cloudinary.com/djrtz9zbk/image/upload/w_900,q_auto/v1779740346/concert_1_qyfpxs.jpg" alt="Musique" loading="lazy" />
+      </a>
 
-      </div>
-    </section>
-
-
-    <!-- ==========================================
-         SÉRIE : MUSIQUE & CONCERTS
-         ========================================== -->
-    <section id="concerts" class="serie">
-
-      <div class="serie-info">
-        <h2 class="serie-titre">MUSIQUE & CONCERTS</h2>
-        <p class="serie-credits">photographie de bands et concerts</p>
-      </div>
-
-      <div class="galerie-bande">
-
-        <a href="https://res.cloudinary.com/djrtz9zbk/image/upload/w_1600,q_auto/v1779740509/concert_5_hrjeov.jpg" class="glightbox">
-          <img src="https://res.cloudinary.com/djrtz9zbk/image/upload/w_800,q_auto/v1779740509/concert_5_hrjeov.jpg" alt="Concert 01" loading="lazy" />
-        </a>
-
-        <a href="https://res.cloudinary.com/djrtz9zbk/image/upload/w_1600,q_auto/v1779740503/concert_4_qgwijq.jpg" class="glightbox">
-          <img src="https://res.cloudinary.com/djrtz9zbk/image/upload/w_800,q_auto/v1779740503/concert_4_qgwijq.jpg" alt="Concert 02" loading="lazy" />
-        </a>
-
-        <a href="https://res.cloudinary.com/djrtz9zbk/image/upload/w_1600,q_auto/v1779740346/concert_3_md6yuu.jpg" class="glightbox">
-          <img src="https://res.cloudinary.com/djrtz9zbk/image/upload/w_800,q_auto/v1779740346/concert_3_md6yuu.jpg" alt="Concert 03" loading="lazy" />
-        </a>
-
-        <a href="https://res.cloudinary.com/djrtz9zbk/image/upload/w_1600,q_auto/v1779740346/concert_1_qyfpxs.jpg" class="glightbox">
-          <img src="https://res.cloudinary.com/djrtz9zbk/image/upload/w_800,q_auto/v1779740346/concert_1_qyfpxs.jpg" alt="Concert 04" loading="lazy" />
-        </a>
-
-        <a href="https://res.cloudinary.com/djrtz9zbk/image/upload/w_1600,q_auto/v1779740346/concert_2_n4treq.jpg" class="glightbox">
-          <img src="https://res.cloudinary.com/djrtz9zbk/image/upload/w_800,q_auto/v1779740346/concert_2_n4treq.jpg" alt="Concert 05" loading="lazy" />
-        </a>
-
-        <a href="https://res.cloudinary.com/djrtz9zbk/image/upload/w_1600,q_auto/v1779740346/concert_8_piof48.jpg" class="glightbox">
-          <img src="https://res.cloudinary.com/djrtz9zbk/image/upload/w_800,q_auto/v1779740346/concert_8_piof48.jpg" alt="Concert 06" loading="lazy" />
-        </a>
-
-        <a href="https://res.cloudinary.com/djrtz9zbk/image/upload/w_1600,q_auto/v1779740346/concert_7_y9rdwr.jpg" class="glightbox">
-          <img src="https://res.cloudinary.com/djrtz9zbk/image/upload/w_800,q_auto/v1779740346/concert_7_y9rdwr.jpg" alt="Concert 07" loading="lazy" />
-        </a>
-
-        <a href="https://res.cloudinary.com/djrtz9zbk/image/upload/w_1600,q_auto/v1779740346/concert_6_su2sct.jpg" class="glightbox">
-          <img src="https://res.cloudinary.com/djrtz9zbk/image/upload/w_800,q_auto/v1779740346/concert_6_su2sct.jpg" alt="Concert 08" loading="lazy" />
-        </a>
-
-      </div>
-    </section>
-
-
-    <!-- ==========================================
-         CONTACT
-         ========================================== -->
-    <section id="contact" class="serie">
-      <div class="serie-info">
-        <h2 class="serie-titre">CONTACT</h2>
-      </div>
-      <p class="contact-email">
-        <a href="mailto:adriangelineau@gmail.com">adriangelineau@gmail.com</a>
-      </p>
-    </section>
-
+    </div>
 
   </main>
 
-  <!-- ICÔNE INSTAGRAM fixe en bas à gauche -->
-  <a href="https://www.instagram.com/adrian_alog/" target="_blank" rel="noopener noreferrer" class="instagram-btn" aria-label="Instagram">
-    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-      <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
-      <circle cx="12" cy="12" r="4"/>
-      <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/>
-    </svg>
-  </a>
-
   <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
-  <script>
-    const lightbox = GLightbox();
-
-    // Scroll horizontal à la molette sur chaque bande
-    // Quand la bande est au bout, le scroll vertical reprend normalement
-    document.querySelectorAll('.galerie-bande').forEach(bande => {
-      bande.addEventListener('wheel', function(e) {
-        const auBout =
-          (e.deltaY > 0 && bande.scrollLeft >= bande.scrollWidth - bande.clientWidth - 1) ||
-          (e.deltaY < 0 && bande.scrollLeft <= 0);
-
-        if (auBout) return; // laisse le scroll vertical se faire
-
-        e.preventDefault();
-        bande.scrollLeft += e.deltaY * 1.5; // ← vitesse de défilement, ajuste si besoin
-      }, { passive: false });
-    });
-  </script>
+  <script>const lightbox = GLightbox();</script>
 
 </body>
 </html>

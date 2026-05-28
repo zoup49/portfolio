@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <title>Doubles expositions — Adrian Gelineau</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Esteban&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="sidebar-nom">
+      <a href="index.html">
+        <span class="nom">ADRIAN GELINEAU</span>
+        <span class="sous-nom">photographie argentique</span>
+      </a>
+    </div>
+    <nav class="sidebar-nav">
+      <a href="paysage.html" >paysage</a>
+      <a href="musique.html" >musique & art</a>
+      <a href="double-exposition.html" class="active">doubles expositions</a>
+      <a href="portrait.html" >portrait</a>
+      <span class="nav-separateur"></span>
+      <a href="apropos.html" >à propos</a>
+    </nav>
+    <a href="https://www.instagram.com/adrian_alog/" target="_blank" rel="noopener noreferrer" class="instagram-sidebar" aria-label="Instagram">
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+        <circle cx="12" cy="12" r="4"/>
+        <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/>
+      </svg>
+    </a>
+  </aside>
+  <main class="contenu">
+    <p class="page-titre">Doubles expositions</p>
+
+    <section class="serie">
+      <div class="serie-info">
+        <h2 class="serie-titre">Série 1</h2>
+        <p class="serie-credits">Description de la série — pellicule, année</p>
+      </div>
+      <div class="galerie-bande">
+        <a href="https://res.cloudinary.com/djrtz9zbk/image/upload/w_1600,q_auto/v1779740509/concert_5_hrjeov.jpg" class="glightbox"><img src="https://res.cloudinary.com/djrtz9zbk/image/upload/w_800,q_auto/v1779740509/concert_5_hrjeov.jpg" alt="Double exposition" loading="lazy" /></a>
+        <a href="https://res.cloudinary.com/djrtz9zbk/image/upload/w_1600,q_auto/v1779740503/concert_4_qgwijq.jpg" class="glightbox"><img src="https://res.cloudinary.com/djrtz9zbk/image/upload/w_800,q_auto/v1779740503/concert_4_qgwijq.jpg" alt="Double exposition" loading="lazy" /></a>
+        <a href="https://res.cloudinary.com/djrtz9zbk/image/upload/w_1600,q_auto/v1779740346/concert_3_md6yuu.jpg" class="glightbox"><img src="https://res.cloudinary.com/djrtz9zbk/image/upload/w_800,q_auto/v1779740346/concert_3_md6yuu.jpg" alt="Double exposition" loading="lazy" /></a>
+        <a href="https://res.cloudinary.com/djrtz9zbk/image/upload/w_1600,q_auto/v1779740346/concert_1_qyfpxs.jpg" class="glightbox"><img src="https://res.cloudinary.com/djrtz9zbk/image/upload/w_800,q_auto/v1779740346/concert_1_qyfpxs.jpg" alt="Double exposition" loading="lazy" /></a>
+      </div>
+    </section>
+
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
+  <script>
+    const lightbox = GLightbox();
+    document.querySelectorAll(".galerie-bande").forEach(bande => {
+      bande.addEventListener("wheel", function(e) {
+        const auBout =
+          (e.deltaY > 0 && bande.scrollLeft >= bande.scrollWidth - bande.clientWidth - 1) ||
+          (e.deltaY < 0 && bande.scrollLeft <= 0);
+        if (auBout) return;
+        e.preventDefault();
+        bande.scrollLeft += e.deltaY * 1.5;
+      }, { passive: false });
+    });
+  </script>
+</body>
+</html>

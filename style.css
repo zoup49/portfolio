@@ -1,203 +1,230 @@
 /* =============================================
    STYLE.CSS — Portfolio Adrian Gelineau
-   Mise en page : sidebar fixe + bandes horizontales
+   Partagé par toutes les pages
    ============================================= */
 
-
 /* --- BASE --- */
-
 body {
-  font-family: 'Fragment Mono', monospace;
+  font-family: 'Esteban', serif;
   font-size: 13px;
-  line-height: 0.9;
+  line-height: 1.4;
   color: #111;
-  background-color: #f5f4f2;   /* ← couleur de fond */
+  background-color: #f5f4f2;
   margin: 0;
   padding: 0;
   display: flex;
   min-height: 100vh;
 }
-
-* {
-  box-sizing: border-box;
-}
-
+* { box-sizing: border-box; }
 
 /* --- SIDEBAR --- */
-
 .sidebar {
-  width: 350px;
+  width: 310px;
   flex-shrink: 0;
   padding: 3rem 2.5rem;
   position: sticky;
   top: 0;
   height: 100vh;
   overflow-y: auto;
+  display: flex;
+  flex-direction: column;
 }
-
 .sidebar-nom {
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem;
 }
-
+.sidebar-nom a {
+  text-decoration: none;
+  color: #111;
+}
 .nom {
   display: block;
-  font-weight: 700;
-  font-size: 2em;
-  letter-spacing: 0.05em;
+  font-weight: 900;
+  font-size: 1.9em;
+  letter-spacing: 0.01em;
   margin-bottom: 0.4rem;
 }
-
 .sous-nom {
   display: block;
-  font-weight: 300;
-  font-style: italic;
-  color: #666;
-  font-size: 0.9em;
+  font-style: normal;
+  color: #888;
+  font-size: 1em;
 }
-
 .sidebar-nav {
   display: flex;
   flex-direction: column;
-  gap: 0.4rem;
+  gap: 0.5rem;
+  flex: 1;
 }
-
 .sidebar-nav a {
   text-decoration: none;
   color: #111;
-  font-weight: 300;
+  font-style: italic;
   transition: opacity 0.2s;
 }
-
-.sidebar-nav a:hover {
+.sidebar-nav a:hover,
+.sidebar-nav a.active {
   opacity: 0.4;
 }
-
 .nav-separateur {
   display: block;
   border-top: 1px solid #ccc;
   margin: 0.6rem 0;
 }
-
+.instagram-sidebar {
+  margin-top: auto;
+  padding-top: 2rem;
+  opacity: 0.45;
+  transition: opacity 0.2s;
+}
+.instagram-sidebar:hover { opacity: 1; }
 
 /* --- CONTENU --- */
-
 .contenu {
   flex: 1;
-  padding: 2rem 0 6rem 2rem;  /* pas de padding-right : les bandes vont jusqu'au bord */
-  min-width: 0;               /* empêche le dépassement flex */
+  padding: 3rem 0 6rem 2.5rem;
+  min-width: 0;
 }
 
+/* =============================================
+   PAGE D'ACCUEIL — patchwork style Lawrence Fafard
+   2 colonnes, photos à taille naturelle (ratio préservé), air entre elles
+   ============================================= */
+.patchwork {
+  columns: 2;                /* ← 2 colonnes. Change en 3 pour plus serré */
+  column-gap: 12px;          /* ← espace entre les colonnes */
+  padding-right: 2rem;
+}
+.pw-item {
+  display: block;
+  text-decoration: none;
+  break-inside: avoid;       /* empêche une photo d'être coupée entre deux colonnes */
+  margin-bottom: 12px;       /* ← espace entre les photos */
+}
+.pw-item img {
+  width: 100%;
+  height: auto;              /* ← clé : ratio naturel, portrait reste portrait */
+  display: block;
+  transition: opacity 0.3s;
+}
+.pw-item:hover img { opacity: 0.8; }
 
-/* --- SÉRIE --- */
+/* =============================================
+   PAGES DE SÉRIES — bandes horizontales
+   ============================================= */
+.page-titre {
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #999;
+  margin: 0 0 3rem 0;
+  padding-right: 2rem;
+}
 
 .serie {
-  margin-bottom: 4rem;        /* ← espace entre chaque série */
+  margin-bottom: 3rem;
 }
-
 .serie-info {
-  margin-bottom: 0.8rem;
-  padding-right: 2rem;        /* marge droite pour le texte seulement */
+  margin-bottom: 1rem;
+  padding-right: 2rem;
 }
-
 .serie-titre {
-  font-size: 12px;
-  font-weight: 500;
-  letter-spacing: 0.12em;
-  margin: 0 0 0.2rem 0;
+  font-size: 13px;
+  font-weight: 400;
+  font-style: normal;
+  letter-spacing: 0.1em;
+  margin: 0 0 0rem 0;
   padding: 0;
 }
-
 .serie-credits {
-  font-weight: 300;
-  font-style: italic;
-  color: #888;
+  font-style: normal;
+  color: #999;
   margin: 0;
-  font-size: 11px;
+  font-size: 11.5px;
+  line-height: 1.5;
 }
 
-
-/* --- BANDE HORIZONTALE ---
-   Principe :
-   - display: flex          → images côte à côte
-   - overflow-x: auto       → scroll horizontal quand ça déborde
-   - height fixe            → toutes les images ont la même hauteur
-   - width: auto sur img    → chaque image garde son ratio naturel
-     (portrait = étroit, paysage = large)
-   -------------------------------------------- */
-
+/* Bande horizontale */
 .galerie-bande {
   display: flex;
   flex-direction: row;
-  gap: 3px;                   /* ← espace entre les photos */
-  overflow-x: auto;           /* scroll horizontal */
+  gap: 3px;
+  overflow-x: auto;
   overflow-y: hidden;
-  height: 300px;              /* ← hauteur de la bande, ajuste à ton goût */
-  padding-bottom: 6px;        /* espace pour la scrollbar */
-  cursor: grab;               /* curseur "main" pour indiquer le drag possible */
+  height: 320px;             /* ← hauteur des bandes */
+  padding-bottom: 6px;
+  cursor: grab;
 }
+.galerie-bande:active { cursor: grabbing; }
+.galerie-bande::-webkit-scrollbar { height: 2px; }
+.galerie-bande::-webkit-scrollbar-track { background: transparent; }
+.galerie-bande::-webkit-scrollbar-thumb { background: #ccc; }
 
-.galerie-bande:active {
-  cursor: grabbing;
-}
-
-/* Scrollbar discrète */
-.galerie-bande::-webkit-scrollbar {
-  height: 3px;
-}
-.galerie-bande::-webkit-scrollbar-track {
-  background: transparent;
-}
-.galerie-bande::-webkit-scrollbar-thumb {
-  background: #ccc;
-  border-radius: 2px;
-}
-
-/* Chaque lien = une cellule de la bande */
 .galerie-bande a {
   display: block;
-  flex-shrink: 0;             /* les images ne rétrécissent pas */
-  height: 100%;               /* remplit la hauteur de la bande */
+  flex-shrink: 0;
+  height: 100%;
   text-decoration: none;
 }
-
-/* L'image remplit la hauteur, largeur automatique selon son ratio */
 .galerie-bande img {
   height: 100%;
-  width: auto;                /* ← clé : ratio naturel préservé */
+  width: auto;
   display: block;
   transition: opacity 0.25s;
 }
+.galerie-bande a:hover img { opacity: 0.8; }
 
-.galerie-bande a:hover img {
-  opacity: 0.8;
+/* =============================================
+   PAGE À PROPOS
+   ============================================= */
+.apropos-wrap {
+  display: flex;
+  gap: 3rem;
+  padding-right: 2rem;
+  align-items: flex-start;
 }
-
-
-/* --- CONTACT --- */
-
-.contact-email {
-  font-weight: 300;
-  margin: 0;
+.apropos-photo {
+  width: 220px;
+  flex-shrink: 0;
 }
-
-.contact-email a {
+.apropos-photo img {
+  width: 100%;
+  display: block;
+}
+.apropos-texte {
+  flex: 1;
+  max-width: 480px;
+}
+.apropos-texte h2 {
+  font-size: 13px;
+  font-weight: 400;
+  font-style: italic;
+  letter-spacing: 0.05em;
+  margin: 0 0 1.2rem 0;
+}
+.apropos-texte p {
+  font-style: normal;
+  line-height: 1.8;
+  color: #333;
+  margin: 0 0 1rem 0;
+}
+.apropos-contact {
+  margin-top: 2rem;
+  font-style: italic;
+  color: #888;
+}
+.apropos-contact a {
   color: #111;
-  text-underline-offset: 3px;
 }
 
-a {
-  color: #111;
-}
+/* --- LIENS --- */
+a { color: #111; }
 
-
-/* --- RESPONSIVE : téléphone --- */
-
-@media (max-width: 650px) {
-
-  body {
-    flex-direction: column;
-  }
-
+/* =============================================
+   RESPONSIVE
+   ============================================= */
+@media (max-width: 700px) {
+  body { flex-direction: column; }
   .sidebar {
     width: 100%;
     height: auto;
@@ -205,100 +232,41 @@ a {
     padding: 1.5rem 1rem 1rem;
     border-bottom: 1px solid #ddd;
   }
-
-  .sidebar-nav {
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 0.5rem 1rem;
-  }
-
-  .nav-separateur {
-    display: none;
-  }
-
-  .contenu {
-    padding: 1.5rem 0 3rem 1rem;
-  }
-
-  .galerie-bande {
-    height: 240px;            /* bande plus courte sur mobile */
-  }
+  .sidebar-nav { flex-direction: row; flex-wrap: wrap; gap: 0.4rem 1rem; }
+  .nav-separateur { display: none; }
+  .instagram-sidebar { margin-top: 0.5rem; padding-top: 0; }
+  .contenu { padding: 1.5rem 0 3rem 1rem; }
+  .galerie-bande { height: 200px; }
+  .patchwork { columns: 1; }
+  .apropos-wrap { flex-direction: column; }
+  .apropos-photo { width: 100%; max-width: 280px; }
 }
-
-
-/* --- ICÔNE INSTAGRAM --- */
-
-.instagram-btn {
-  position: fixed;             /* ← reste en bas à gauche peu importe le scroll */
-  bottom: 1.5rem;
-  left: 1.8rem;
-  color: #111;
-  text-decoration: none;
-  opacity: 0.5;
-  transition: opacity 0.2s;
-  z-index: 100;
-}
-
-.instagram-btn:hover {
-  opacity: 1;
-}
-
 
 /* ==============================================
-   POLICES — comment changer
+   POLICES — changer manuellement
    ================================================
-
-   ÉTAPE 1 : remplace le lien Google Fonts dans le <head> du HTML
-   ÉTAPE 2 : change font-family dans body { } ci-dessous
-
+   ACTIVE : Esteban (serif élégant, éditorial)
+   <head> : <link href="https://fonts.googleapis.com/css2?family=Esteban&display=swap" rel="stylesheet">
+   CSS    : font-family: 'Esteban', serif;
    -----------------------------------------------
-   OPTION A — Fragment Mono (monospace, techno)
-   <head> :
-     <link href="https://fonts.googleapis.com/css2?family=Fragment+Mono&display=swap" rel="stylesheet">
-   CSS :
-     font-family: 'Fragment Mono', monospace;
-
+   Fragment Mono (monospace techno)
+   <head> : <link href="https://fonts.googleapis.com/css2?family=Fragment+Mono&display=swap" rel="stylesheet">
+   CSS    : font-family: 'Fragment Mono', monospace;
    -----------------------------------------------
-   OPTION B — Playfair Display (élégant, mystique)
-   <head> :
-     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
-   CSS :
-     font-family: 'Playfair Display', serif;
-
+   Space Mono (underground, minimal)
+   <head> : <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital@0;1&display=swap" rel="stylesheet">
+   CSS    : font-family: 'Space Mono', monospace;
    -----------------------------------------------
-   OPTION D — DM Mono (monospace propre, photo/éditorial)
-   <head> :
-     <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
-   CSS :
-     font-family: 'DM Mono', monospace;
-
+   DM Mono (monospace propre, photo/éditorial)
+   <head> : <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+   CSS    : font-family: 'DM Mono', monospace;
    -----------------------------------------------
-   TESTÉ MAIS PAS AIMÉ
-   
-   OPTION E — Cormorant Garamond (serif fin, galerie d'art)
-   <head> :
-     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
-   CSS :
-     font-family: 'Cormorant Garamond', serif;
-
+   Playfair Display (élégant, mystique)
+   <head> : <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+   CSS    : font-family: 'Playfair Display', serif;
    -----------------------------------------------
-   OPTION F — Sono (variable, moderne mais organique — bon pour argentique)
-   <head> :
-     <link href="https://fonts.googleapis.com/css2?family=Sono:wght@300;400&display=swap" rel="stylesheet">
-   CSS :
-     font-family: 'Sono', sans-serif;
-
-   ================================================
-   Pour tester : change les deux lignes indiquées
-   dans le <head> HTML et dans body { } CSS.
-   Ctrl+S dans VS Code → rafraîchissement Live Server instantané.
-
-      OPTION C — Space Mono (underground, minimal)
-   <head> :
-     <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital@0;1&display=swap" rel="stylesheet">
-   CSS :
-     font-family: 'Space Mono', monospace;
-
+   Gelasio (serif expressif)
+   <head> : <link href="https://fonts.googleapis.com/css2?family=Gelasio:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+   CSS    : font-family: 'Gelasio', serif;
+   -----------------------------------------------
    ============================================== */
-
-   
