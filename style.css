@@ -86,27 +86,26 @@ body {
 }
 
 /* =============================================
-   PAGE D'ACCUEIL — patchwork style Lawrence Fafard
-   2 colonnes, photos à taille naturelle (ratio préservé), air entre elles
+   PAGE D'ACCUEIL — patchwork style
    ============================================= */
-.patchwork {
-  columns: 2;                /* ← 2 colonnes. Change en 3 pour plus serré */
-  column-gap: 12px;          /* ← espace entre les colonnes */
-  padding-right: 2rem;
-}
+.patchwork { grid-template-columns: 1fr; padding-right: 8rem; }
 .pw-item {
   display: block;
   text-decoration: none;
-  break-inside: avoid;       /* empêche une photo d'être coupée entre deux colonnes */
-  margin-bottom: 12px;       /* ← espace entre les photos */
+  max-width: 40%;               /* ← taille des photos (% de la colonne) */
+  margin-bottom: 1rem;          /* ← espace vertical entre photos */
 }
+/* Colonne gauche — alignée à gauche */
+.pw-item:nth-child(odd)  { margin-right: auto; margin-top: 0; }
+/* Colonne droite — décalée vers le bas */
+.pw-item:nth-child(even) { margin-left: auto;  margin-top: 0rem; }
 .pw-item img {
   width: 100%;
-  height: auto;              /* ← clé : ratio naturel, portrait reste portrait */
+  height: auto;
   display: block;
   transition: opacity 0.3s;
 }
-.pw-item:hover img { opacity: 0.8; }
+.pw-item:hover img { opacity: 0.75; }
 
 /* =============================================
    PAGES DE SÉRIES — bandes horizontales
@@ -132,7 +131,7 @@ body {
   font-size: 13px;
   font-weight: 400;
   font-style: normal;
-  letter-spacing: 0.1em;
+  letter-spacing: 0em;
   margin: 0 0 0rem 0;
   padding: 0;
 }
@@ -237,7 +236,7 @@ a { color: #111; }
   .instagram-sidebar { margin-top: 0.5rem; padding-top: 0; }
   .contenu { padding: 1.5rem 0 3rem 1rem; }
   .galerie-bande { height: 200px; }
-  .patchwork { columns: 1; }
+  .patchwork { grid-template-columns: 1fr; padding-right: 1rem; }
   .apropos-wrap { flex-direction: column; }
   .apropos-photo { width: 100%; max-width: 280px; }
 }
