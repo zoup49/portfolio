@@ -280,6 +280,7 @@ a { color: #111; }
 
   /* Contenu sidebar caché par défaut */
   .sidebar-inner { display: none; }
+  .sidebar.menu-open .sidebar-nom { display: none; }
 
   /* Overlay plein écran quand ouvert */
   .sidebar.menu-open .sidebar-inner {
@@ -292,8 +293,7 @@ a { color: #111; }
   }
   .sidebar.menu-open .sidebar-nom { margin-bottom: 1.5rem; }
   .sidebar.menu-open .sidebar-nav { gap: 1rem; font-size: 1.05em; }
-  .sidebar.menu-open .instagram-sidebar { margin-top: auto; padding-bottom: 1rem; }
-
+  .sidebar.menu-open .instagram-sidebar { margin-top: 2rem; padding-top: 0; }
   /* Contenu décalé sous la barre fixe */
   .contenu { padding-top: 5rem; padding-left: 1rem; }
 
