@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Paysage — Adrian Gelineau</title>
+  <title>Ailleurs — Adrian Gelineau</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Esteban&display=swap" rel="stylesheet">
@@ -29,11 +29,11 @@
         </a>
       </div>
       <nav class="sidebar-nav">
-        <a href="paysage.html" class="active">paysage</a>
+        <a href="paysage.html">paysage</a>
         <a href="musique.html">musique & art</a>
         <a href="double-exposition.html">doubles expositions</a>
         <a href="portrait.html">portrait</a>
-        <a href="ailleurs.html">ailleurs</a>
+        <a href="ailleurs.html" class="active">ailleurs</a>
         <span class="nav-separateur"></span>
         <a href="apropos.html">à propos</a>
       </nav>
@@ -44,7 +44,7 @@
   </aside>
 
   <main class="contenu">
-    <p class="page-titre">Paysage</p>
+    <p class="page-titre">Ailleurs</p>
     <div id="conteneur"></div>
   </main>
 
@@ -54,7 +54,7 @@
     // =============================================
     // MODE — "bandes" (défilement horizontal) ou "patchwork" (grille)
     // =============================================
-    const MODE = "bandes";
+    const MODE = "patchwork";
 
     // =============================================
     // SÉRIES — tout se modifie ici
@@ -62,25 +62,13 @@
     const SERIES = [
 
       {
-        id:      "serie-hiver",
-        titre:   "Hiver au Bas-Saint-Laurent",
-        credits: "Rimouski et ses environs // hiver 2023",
+        id:      "serie-ailleurs1",
+        titre:   "Titre de la série",
+        credits: "Description — pellicule, lieu, date",
         photos: [
-          ["v1779740509/00002161-29_tyj2nv", "Hiver au Bas-Saint-Laurent"],
-          ["v1779740503/1_21_kcuvib", "Hiver au Bas-Saint-Laurent"],
-          ["v1779740346/1_4_oucnro", "Hiver au Bas-Saint-Laurent"],
-          // ajouter une photo : ["dossier/nom_fichier", "description"],
-        ]
-      },
-
-      {
-        id:      "serie-fleuve",
-        titre:   "Fleuve Saint-Laurent",
-        credits: "De Rimouski à Tadoussac — argentique, Portra 400 — été 2024",
-        photos: [
-          ["v1779740346/1_4_oucnro", "Fleuve Saint-Laurent"],
-          ["v1779740509/00002161-29_tyj2nv", "Fleuve Saint-Laurent"],
-          ["v1779740503/1_21_kcuvib", "Fleuve Saint-Laurent"],
+          ["v1779740509/concert_5_hrjeov", "Double exposition"],
+          ["v1779740503/concert_4_qgwijq", "Double exposition"],
+          ["v1779740346/concert_3_md6yuu", "Double exposition"],
           // ajouter une photo : ["dossier/nom_fichier", "description"],
         ]
       },

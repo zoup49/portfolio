@@ -29,12 +29,13 @@
         </a>
       </div>
       <nav class="sidebar-nav">
-      <a href="paysage.html">paysage</a>
-      <a href="musique.html">musique & art</a>
-      <a href="double-exposition.html">doubles expositions</a>
-      <a href="portrait.html" class="active">portrait</a>
+        <a href="paysage.html">paysage</a>
+        <a href="musique.html">musique & art</a>
+        <a href="double-exposition.html">doubles expositions</a>
+        <a href="portrait.html" class="active">portrait</a>
+        <a href="ailleurs.html">ailleurs</a>
         <span class="nav-separateur"></span>
-      <a href="apropos.html">à propos</a>
+        <a href="apropos.html">à propos</a>
       </nav>
       <a href="https://www.instagram.com/adrian_alog/" target="_blank" rel="noopener noreferrer" class="instagram-sidebar" aria-label="Instagram">
         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/></svg>
@@ -44,59 +45,70 @@
 
   <main class="contenu">
     <p class="page-titre">Portrait</p>
-    <div id="conteneur-series"></div>
+    <div id="conteneur"></div>
   </main>
 
   <script>
     const BASE = "https://res.cloudinary.com/djrtz9zbk/image/upload";
 
     // =============================================
-    // SÉRIES — tout modifier ici :
-    //   titre, crédits et photos au même endroit
-    //   pour ajouter une série : copie un bloc { ... }
-    //   pour ajouter une photo : ajoute une ligne dans photos[]
+    // MODE — "bandes" (défilement horizontal) ou "patchwork" (grille)
+    // =============================================
+    const MODE = "bandes";
+
+    // =============================================
+    // SÉRIES — tout se modifie ici
     // =============================================
     const SERIES = [
+
       {
         id:      "serie-portrait1",
         titre:   "Nom du projet ou de la personne",
         credits: "Description — pellicule, lieu, date",
         photos: [
-          ["v1779740503/concert_4_qgwijq",                  "Portrait"],
-          ["v1779740346/concert_3_md6yuu",                  "Portrait"],
-          ["v1779740346/concert_1_qyfpxs",                  "Portrait"],
-          ["v1779740346/concert_2_n4treq",                  "Portrait"],
-          // ajouter : ["version/nom_fichier", "description"],
+          ["v1779740503/concert_4_qgwijq", "Portrait"],
+          ["v1779740346/concert_3_md6yuu", "Portrait"],
+          ["v1779740346/concert_1_qyfpxs", "Portrait"],
+          ["v1779740346/concert_2_n4treq", "Portrait"],
+          // ajouter une photo : ["dossier/nom_fichier", "description"],
         ]
       },
 
     ];
 
-    // Génération automatique — ne pas modifier
-    const conteneur = document.getElementById("conteneur-series");
-    SERIES.forEach(s => {
-      const section = document.createElement("section");
-      section.className = "serie";
-      section.innerHTML =
-        `<div class="serie-info">` +
-          `<h2 class="serie-titre">${s.titre}</h2>` +
-          `<p class="serie-credits">${s.credits}</p>` +
-        `</div>` +
-        `<div class="galerie-bande" id="${s.id}"></div>`;
-      conteneur.appendChild(section);
-      const el = document.getElementById(s.id);
-      el.innerHTML = s.photos.map(([file, alt]) =>
-        `<a href="${BASE}/w_1600,q_auto/${file}.jpg" class="glightbox">` +
-        `<img src="${BASE}/w_800,q_auto/${file}.jpg" alt="${alt}" loading="lazy"/></a>`
-      ).join("");
-    });
+    // ----- Génération automatique (ne pas toucher) -----
+    const conteneur = document.getElementById("conteneur");
+    const img = (file, alt, cls) =>
+      `<a href="${BASE}/w_1600,q_auto/${file}.jpg" class="${cls}">` +
+      `<img src="${BASE}/w_800,q_auto/${file}.jpg" alt="${alt}" loading="lazy"/></a>`;
+
+    if (MODE === "patchwork") {
+      const grille = document.createElement("div");
+      grille.className = "patchwork";
+      SERIES.forEach(s => s.photos.forEach(([f, a]) =>
+        grille.innerHTML += img(f, a, "pw-item glightbox")));
+      conteneur.appendChild(grille);
+    } else {
+      SERIES.forEach(s => {
+        const sec = document.createElement("section");
+        sec.className = "serie";
+        sec.innerHTML =
+          `<div class="serie-info"><h2 class="serie-titre">${s.titre}</h2>` +
+          `<p class="serie-credits">${s.credits}</p></div>` +
+          `<div class="galerie-bande" id="${s.id}"></div>`;
+        conteneur.appendChild(sec);
+        document.getElementById(s.id).innerHTML =
+          s.photos.map(([f, a]) => img(f, a, "glightbox")).join("");
+      });
+    }
   </script>
 
   <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
   <script>
     const lightbox = GLightbox();
+    // Molette = défilement horizontal des bandes
     document.querySelectorAll(".galerie-bande").forEach(bande => {
-      bande.addEventListener("wheel", function(e) {
+      bande.addEventListener("wheel", e => {
         const auBout =
           (e.deltaY > 0 && bande.scrollLeft >= bande.scrollWidth - bande.clientWidth - 1) ||
           (e.deltaY < 0 && bande.scrollLeft <= 0);
@@ -108,17 +120,16 @@
   </script>
 
   <script>
+    // Menu hamburger (mobile)
     const btn = document.getElementById("hamburger");
     const sb  = document.querySelector(".sidebar");
-    if (btn) {
-      btn.addEventListener("click", () => {
-        const open = sb.classList.toggle("menu-open");
-        btn.setAttribute("aria-expanded", open);
-      });
-      sb.querySelectorAll(".sidebar-nav a").forEach(a =>
-        a.addEventListener("click", () => sb.classList.remove("menu-open"))
-      );
-    }
+    btn.addEventListener("click", () => {
+      const open = sb.classList.toggle("menu-open");
+      btn.setAttribute("aria-expanded", open);
+    });
+    sb.querySelectorAll(".sidebar-nav a").forEach(a =>
+      a.addEventListener("click", () => sb.classList.remove("menu-open"))
+    );
   </script>
 
 </body>
