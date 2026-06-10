@@ -86,24 +86,29 @@ body {
 }
 
 /* =============================================
-   PAGE D'ACCUEIL — patchwork style Lawrence Fafard
+   PATCHWORK (grille de photos)
+   --------------------------------------------
+   POUR AJUSTER : change uniquement les 4 valeurs
+   ci-dessous. Tout le reste se règle tout seul.
    ============================================= */
 .patchwork {
+  --colonnes:          3;       /* nombre de colonnes */
+  --espace-cote:       3rem;    /* espace gauche-droite entre photos */
+  --espace-haut-bas:   4rem;    /* espace vertical entre photos */
+  --taille-photo:      85%;     /* largeur des photos (100% = remplit la colonne) */
+
   display: grid;
-  grid-template-columns: 1fr 1fr;  /* 2 colonnes */
-  column-gap: 2rem;
-  row-gap: 0;
-  padding-right: 4rem;
+  grid-template-columns: repeat(var(--colonnes), 1fr);
+  column-gap: var(--espace-cote);
   align-items: start;
+  padding-right: 2rem;
 }
 .pw-item {
   display: block;
   text-decoration: none;
-  max-width: 75%;               /* ← taille des photos dans leur colonne */
-  margin-bottom: 6rem;          /* ← espace vertical entre photos */
+  max-width: var(--taille-photo);
+  margin: 0 auto var(--espace-haut-bas);   /* centré dans sa colonne */
 }
-.pw-item:nth-child(odd)  { margin-right: auto; margin-top: 0; }
-.pw-item:nth-child(even) { margin-left: auto;  margin-top: 8rem; } /* ← décalage colonne droite */
 .pw-item img { width: 100%; height: auto; display: block; transition: opacity 0.3s; }
 .pw-item:hover img { opacity: 0.75; }
 
@@ -298,14 +303,12 @@ a { color: #111; }
   .contenu { padding-top: 5rem; padding-left: 1rem; }
 
   .galerie-bande { height: 200px; }
+  /* Patchwork sur mobile : 1 ou 2 colonnes, photos plus larges */
   .patchwork {
-    grid-template-columns: 1fr;
+    --colonnes: 1;          /* mets 2 si tu veux 2 colonnes sur mobile */
+    --espace-haut-bas: 2rem;
+    --taille-photo: 90%;
     padding-right: 1rem;
-  }
-  .pw-item, .pw-item:nth-child(even) {
-    max-width: 90%;
-    margin-top: 0;
-    margin-left: 0;
   }
   .apropos-wrap { flex-direction: column; }
   .apropos-photo { width: 100%; max-width: 280px; }

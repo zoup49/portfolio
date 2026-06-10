@@ -29,11 +29,13 @@
         </a>
       </div>
       <nav class="sidebar-nav">
-        <a href="paysage.html">paysage</a>
-        <a href="musique.html">musique & art</a>
-        <a href="double-exposition.html">doubles expositions</a>
-        <a href="portrait.html">portrait</a>
         <a href="ailleurs.html" class="active">ailleurs</a>
+        <a href="chiens_et_chats.html">chiens & chats</a>
+        <a href="double-exposition.html">doubles expositions</a>
+        <a href="food.html">food</a>
+        <a href="musique.html">musique & art</a>
+        <a href="paysage.html">paysage</a>
+        <a href="portrait.html">portrait</a>
         <span class="nav-separateur"></span>
         <a href="apropos.html">à propos</a>
       </nav>
@@ -51,24 +53,27 @@
   <script>
     const BASE = "https://res.cloudinary.com/djrtz9zbk/image/upload";
 
-    // =============================================
     // MODE — "bandes" (défilement horizontal) ou "patchwork" (grille)
-    // =============================================
     const MODE = "patchwork";
 
-    // =============================================
     // SÉRIES — tout se modifie ici
-    // =============================================
     const SERIES = [
+
 
       {
         id:      "serie-ailleurs1",
         titre:   "Titre de la série",
         credits: "Description — pellicule, lieu, date",
         photos: [
-          ["v1779740509/concert_5_hrjeov", "Double exposition"],
-          ["v1779740503/concert_4_qgwijq", "Double exposition"],
-          ["v1779740346/concert_3_md6yuu", "Double exposition"],
+          ["ailleurs_9_nd1piu", "Ailleurs"],
+          ["ailleurs_8_kdp1sd", "Ailleurs"],
+          ["ailleurs_7_ll7dqz", "Ailleurs"],
+          ["ailleurs_6_bx5eji", "Ailleurs"],
+          ["ailleurs_5_ryvfed", "Ailleurs"],
+          ["ailleurs_4_oredgk", "Ailleurs"],
+          ["ailleurs_3_qqkuzh", "Ailleurs"],
+          ["ailleurs_2_xrhaml", "Ailleurs"],
+          ["ailleurs_13_ourglw", "Ailleurs"],
           // ajouter une photo : ["dossier/nom_fichier", "description"],
         ]
       },
@@ -105,7 +110,6 @@
   <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
   <script>
     const lightbox = GLightbox();
-    // Molette = défilement horizontal des bandes
     document.querySelectorAll(".galerie-bande").forEach(bande => {
       bande.addEventListener("wheel", e => {
         const auBout =
@@ -119,7 +123,6 @@
   </script>
 
   <script>
-    // Menu hamburger (mobile)
     const btn = document.getElementById("hamburger");
     const sb  = document.querySelector(".sidebar");
     btn.addEventListener("click", () => {

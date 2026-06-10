@@ -29,11 +29,13 @@
         </a>
       </div>
       <nav class="sidebar-nav">
-        <a href="paysage.html">paysage</a>
-        <a href="musique.html">musique & art</a>
-        <a href="double-exposition.html">doubles expositions</a>
-        <a href="portrait.html">portrait</a>
         <a href="ailleurs.html">ailleurs</a>
+        <a href="chiens_et_chats.html">chiens & chats</a>
+        <a href="double-exposition.html">doubles expositions</a>
+        <a href="food.html">food</a>
+        <a href="musique.html">musique & art</a>
+        <a href="paysage.html">paysage</a>
+        <a href="portrait.html">portrait</a>
         <span class="nav-separateur"></span>
         <a href="apropos.html">à propos</a>
       </nav>
@@ -44,33 +46,45 @@
   </aside>
 
   <main class="contenu">
-    <!-- Page d'accueil : grille de photos menant à chaque série.
-         Pour changer une photo : modifie le nom de fichier dans src.
-         Pour changer la destination : modifie href. -->
-    <div class="patchwork">
-      <a href="paysage.html" class="pw-item">
-        <img src="https://res.cloudinary.com/djrtz9zbk/image/upload/w_900,q_auto/v1779740509/00002161-29_tyj2nv.jpg" alt="Paysage" loading="lazy" />
-      </a>
-      <a href="musique.html" class="pw-item">
-        <img src="https://res.cloudinary.com/djrtz9zbk/image/upload/w_900,q_auto/v1779740503/concert_4_qgwijq.jpg" alt="Musique" loading="lazy" />
-      </a>
-      <a href="double-exposition.html" class="pw-item">
-        <img src="https://res.cloudinary.com/djrtz9zbk/image/upload/w_900,q_auto/v1779740503/1_21_kcuvib.jpg" alt="Doubles expositions" loading="lazy" />
-      </a>
-      <a href="portrait.html" class="pw-item">
-        <img src="https://res.cloudinary.com/djrtz9zbk/image/upload/w_900,q_auto/v1779740346/concert_3_md6yuu.jpg" alt="Portrait" loading="lazy" />
-      </a>
-      <a href="paysage.html" class="pw-item">
-        <img src="https://res.cloudinary.com/djrtz9zbk/image/upload/w_900,q_auto/v1779740346/1_4_oucnro.jpg" alt="Paysage" loading="lazy" />
-      </a>
-      <a href="musique.html" class="pw-item">
-        <img src="https://res.cloudinary.com/djrtz9zbk/image/upload/w_900,q_auto/v1779740346/concert_1_qyfpxs.jpg" alt="Musique" loading="lazy" />
-      </a>
-    </div>
+    <div id="conteneur"></div>
   </main>
 
   <script>
-    // Menu hamburger (mobile)
+    const BASE = "https://res.cloudinary.com/djrtz9zbk/image/upload";
+
+    // PHOTOS D'ACCUEIL — modifie ici
+    // dest = page de destination au clic
+    // file = nom du fichier Cloudinary
+    const PHOTOS = [
+      { dest: "", file: "planche-contact_1_rpird7", alt: "plance contact" },
+      { dest: "paysage.html", file: "double-expo_17_eeheac", alt: "paysage" },
+      { dest: "double-exposition.html", file: "double-expo_18_ciggwl", alt: "Doubles expositions" },
+      { dest: "portrait.html", file: "double-expo_8_w33tgs", alt: "Portrait" },
+      { dest: "musique.html", file: "musique_5_trox4p", alt: "musique" },
+      { dest: "eau.html", file: "eau_11_klllgp", alt: "eau" },
+      { dest: "double-exposition.html", file: "double-expo_12_yia9xk", alt: "Doubles expositions" },
+      // ajouter : { dest: "page.html", file: "dossier/nom_fichier", alt: "description" },
+    ];
+
+    // ----- Génération automatique (ne pas toucher) -----
+    const grille = document.createElement("div");
+    grille.className = "patchwork";
+    PHOTOS.forEach(p => {
+      // Si dest est vide : photo non cliquable, sinon lien vers la page
+      if (p.dest) {
+        grille.innerHTML +=
+          `<a href="${p.dest}" class="pw-item">` +
+          `<img src="${BASE}/w_900,q_auto/${p.file}.jpg" alt="${p.alt}" loading="lazy"/></a>`;
+      } else {
+        grille.innerHTML +=
+          `<div class="pw-item">` +
+          `<img src="${BASE}/w_900,q_auto/${p.file}.jpg" alt="${p.alt}" loading="lazy"/></div>`;
+      }
+    });
+    document.getElementById("conteneur").appendChild(grille);
+  </script>
+
+  <script>
     const btn = document.getElementById("hamburger");
     const sb  = document.querySelector(".sidebar");
     btn.addEventListener("click", () => {

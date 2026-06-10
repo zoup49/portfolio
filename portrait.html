@@ -29,11 +29,13 @@
         </a>
       </div>
       <nav class="sidebar-nav">
-        <a href="paysage.html">paysage</a>
-        <a href="musique.html">musique & art</a>
-        <a href="double-exposition.html">doubles expositions</a>
-        <a href="portrait.html" class="active">portrait</a>
         <a href="ailleurs.html">ailleurs</a>
+        <a href="chiens_et_chats.html">chiens & chats</a>
+        <a href="double-exposition.html">doubles expositions</a>
+        <a href="food.html">food</a>
+        <a href="musique.html">musique & art</a>
+        <a href="paysage.html">paysage</a>
+        <a href="portrait.html" class="active">portrait</a>
         <span class="nav-separateur"></span>
         <a href="apropos.html">à propos</a>
       </nav>
@@ -51,15 +53,12 @@
   <script>
     const BASE = "https://res.cloudinary.com/djrtz9zbk/image/upload";
 
-    // =============================================
     // MODE — "bandes" (défilement horizontal) ou "patchwork" (grille)
-    // =============================================
     const MODE = "bandes";
 
-    // =============================================
     // SÉRIES — tout se modifie ici
-    // =============================================
     const SERIES = [
+
 
       {
         id:      "serie-portrait1",
@@ -106,7 +105,6 @@
   <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
   <script>
     const lightbox = GLightbox();
-    // Molette = défilement horizontal des bandes
     document.querySelectorAll(".galerie-bande").forEach(bande => {
       bande.addEventListener("wheel", e => {
         const auBout =
@@ -120,7 +118,6 @@
   </script>
 
   <script>
-    // Menu hamburger (mobile)
     const btn = document.getElementById("hamburger");
     const sb  = document.querySelector(".sidebar");
     btn.addEventListener("click", () => {
