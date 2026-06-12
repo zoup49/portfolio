@@ -86,16 +86,44 @@ body {
 }
 
 /* =============================================
-   PATCHWORK (grille de photos)
+   PATCHWORK (masonry — photos qui comblent les trous)
    --------------------------------------------
-   POUR AJUSTER : change uniquement les 4 valeurs
-   ci-dessous. Tout le reste se règle tout seul.
+   POUR AJUSTER : change uniquement les 4 valeurs.
+   Plus --air est grand, plus les photos respirent.
    ============================================= */
 .patchwork {
-  --colonnes:          3;       /* nombre de colonnes */
-  --espace-cote:       3rem;    /* espace gauche-droite entre photos */
-  --espace-haut-bas:   4rem;    /* espace vertical entre photos */
-  --taille-photo:      85%;     /* largeur des photos (100% = remplit la colonne) */
+  --colonnes:          3;        /* nombre de colonnes */
+  --espace-cote:       3rem;     /* espace gauche-droite entre colonnes */
+  --espace-haut-bas:   3rem;     /* espace vertical entre photos */
+  --air:               88%;      /* largeur des photos (plus petit = plus d'air autour) */
+
+  column-count: var(--colonnes);
+  column-gap: var(--espace-cote);
+  padding-right: 2rem;
+}
+.pw-item {
+  display: block;
+  text-decoration: none;
+  width: var(--air);
+  margin: 0 auto var(--espace-haut-bas);   /* centré dans sa colonne */
+  break-inside: avoid;          /* évite qu'une photo soit coupée entre 2 colonnes */
+}
+.pw-item img { width: 100%; height: auto; display: block; transition: opacity 0.3s; }
+.pw-item:hover img { opacity: 0.75; }
+
+
+/* =============================================
+   PATCHWORK ACCUEIL (zigzag — index.html uniquement)
+   --------------------------------------------
+   Colonne 1 en haut, colonne 2 descendue,
+   colonne 3 remontée au niveau de la 1.
+   ============================================= */
+.patchwork-accueil {
+  --colonnes:          3;        /* nombre de colonnes */
+  --espace-cote:       2.5rem;   /* espace gauche-droite entre colonnes */
+  --espace-haut-bas:   3rem;     /* espace vertical entre photos */
+  --taille-photo:      85%;      /* largeur des photos dans leur colonne */
+  --decalage:          4rem;     /* de combien la colonne du milieu descend */
 
   display: grid;
   grid-template-columns: repeat(var(--colonnes), 1fr);
@@ -103,15 +131,16 @@ body {
   align-items: start;
   padding-right: 2rem;
 }
-.pw-item {
+.patchwork-accueil .pw-item {
   display: block;
   text-decoration: none;
   max-width: var(--taille-photo);
-  margin: 0 auto var(--espace-haut-bas);   /* centré dans sa colonne */
+  margin: 0 auto var(--espace-haut-bas);
 }
-.pw-item img { width: 100%; height: auto; display: block; transition: opacity 0.3s; }
-.pw-item:hover img { opacity: 0.75; }
-
+/* Zigzag : colonne du milieu descend, colonnes 1 et 3 restent en haut */
+.patchwork-accueil .pw-item:nth-child(3n+2) { transform: translateY(var(--decalage)); }
+.patchwork-accueil .pw-item img { width: 100%; height: auto; display: block; transition: opacity 0.3s; }
+.patchwork-accueil .pw-item:hover img { opacity: 0.75; }
 /* =============================================
    PAGES DE SÉRIES — bandes horizontales
    ============================================= */
@@ -188,7 +217,7 @@ body {
   align-items: flex-start;
 }
 .apropos-photo {
-  width: 220px;
+  width: 500px;
   flex-shrink: 0;
 }
 .apropos-photo img {
@@ -303,11 +332,11 @@ a { color: #111; }
   .contenu { padding-top: 5rem; padding-left: 1rem; }
 
   .galerie-bande { height: 200px; }
-  /* Patchwork sur mobile : 1 ou 2 colonnes, photos plus larges */
-  .patchwork {
-    --colonnes: 1;          /* mets 2 si tu veux 2 colonnes sur mobile */
-    --espace-haut-bas: 2rem;
-    --taille-photo: 90%;
+  /* Patchwork sur mobile : 1 colonne (mets 2 si tu préfères) */
+  .patchwork,
+  .patchwork-accueil {
+    --colonnes: 1;
+    --espace-haut-bas: 1.5rem;
     padding-right: 1rem;
   }
   .apropos-wrap { flex-direction: column; }
